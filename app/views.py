@@ -11,7 +11,10 @@ def index_page(request):
 # esta función obtiene 2 listados que corresponden a las imágenes de la API y los favoritos del usuario, y los usa para dibujar el correspondiente template.
 # si el opcional de favoritos no está desarrollado, devuelve un listado vacío.
 def home(request):
-    images = []
+    # Llama al servicio para obtener las imágenes desde la API
+    images = services.getAllImages()
+
+    # Lista vacía de favoritos (no desarrollada esta funcionalidad)
     favourite_list = []
 
     return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
@@ -25,7 +28,6 @@ def search(request):
         pass
     else:
         return redirect('home')
-
 
 # Estas funciones se usan cuando el usuario está logueado en la aplicación.
 @login_required
