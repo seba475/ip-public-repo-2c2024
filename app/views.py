@@ -9,14 +9,15 @@ from django.contrib.auth.models import User
 def index_page(request):
     return render(request, 'index.html')
 
-# esta función obtiene 2 listados que corresponden a las imágenes de la API y los favoritos del usuario, y los usa para dibujar el correspondiente template.
-# si el opcional de favoritos no está desarrollado, devuelve un listado vacío.
 def home(request):
     # Llama al servicio para obtener las imágenes desde la API
     images = services.getAllImages()
 
-    # Lista vacía de favoritos (no desarrollada esta funcionalidad)
-    favourite_list = []
+    # Obtiene los favoritos del usuario si está autenticado; de lo contrario, asigna una lista vacía.
+    if request.user.is_authenticated:
+        favourite_list = services.getAllFavourites(request)
+    else:
+        favourite_list = []
 
     return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
 
@@ -31,8 +32,8 @@ def search(request):
         # Si no se ingresó texto, muestra todas las imágenes (igual que en 'home')
         images = services.getAllImages()
 
-    # Lista vacía de favoritos (no desarrollada esta funcionalidad)
-    favourite_list = []
+    # Obtiene la lista de favoritos del usuario autenticado (si corresponde)
+    favourite_list = services.getAllFavourites(request) if request.user.is_authenticated else []
 
     # Renderiza el template con las imágenes filtradas o todas
     return render(request, 'home.html', {'images': images,'favourite_list': favourite_list})
@@ -40,16 +41,23 @@ def search(request):
 # Estas funciones se usan cuando el usuario está logueado en la aplicación.
 @login_required
 def getAllFavouritesByUser(request):
-    favourite_list = []
+    # Obtiene todos los favoritos del usuario logueado desde la capa de servicios
+    favourite_list = services.getAllFavourites(request)
     return render(request, 'favourites.html', { 'favourite_list': favourite_list })
 
 @login_required
 def saveFavourite(request):
-    pass
+    if request.method == 'POST':
+        # Llamamos a la capa de servicios para guardar el favorito
+        services.saveFavourite(request)
+    return redirect('home')  # Redirigimos de vuelta a la galería
 
 @login_required
 def deleteFavourite(request):
-    pass
+    if request.method == 'POST':
+        # Llamamos a la capa de servicios para eliminar el favorito
+        services.deleteFavourite(request)
+    return redirect('favoritos')  # Redirigimos de vuelta a la sección de favoritos
 
 def login_view(request):
     if request.method == 'POST':  # Verifica que la solicitud sea POST (envío del formulario)
