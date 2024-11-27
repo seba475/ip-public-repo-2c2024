@@ -3,7 +3,8 @@
 from django.shortcuts import redirect, render
 from .layers.services import services
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from django.contrib.auth import login, logout
+from django.contrib.auth.models import User
 
 def index_page(request):
     return render(request, 'index.html')
@@ -50,6 +51,19 @@ def saveFavourite(request):
 def deleteFavourite(request):
     pass
 
+def login_view(request):
+    if request.method == 'POST':  # Verifica que la solicitud sea POST (envío del formulario)
+        username = request.POST.get('username')  # Extrae el nombre de usuario del formulario
+        password = request.POST.get('password')  # Extrae la contraseña del formulario
+    
+        # Valida si las credenciales ingresadas coinciden con las predefinidas
+        if username == 'admin' and password == 'admin':
+            user = User.objects.get(username='admin')  # Busca al usuario "admin" en la base de datos
+            login(request, user)  # Inicia sesión para el usuario encontrado
+            return redirect('home')  # Redirige al usuario a la página principal
+
+# Vista para cerrar sesión
 @login_required
 def exit(request):
-    pass
+    logout(request) # Cerramos la sesión del usuario
+    return redirect('index-page')  # Redirige al inicio
