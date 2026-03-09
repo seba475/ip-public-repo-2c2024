@@ -2,6 +2,7 @@
 
 Aplicación web desarrollada con **Django** que permite explorar personajes de la serie **Rick & Morty** utilizando su API pública.  
 El proyecto fue realizado como trabajo práctico para la materia **Introducción a la Programación**.
+
 ---
 
 ## 📝 Descripción del proyecto
@@ -95,4 +96,4 @@ El objetivo del proyecto fue aplicar conceptos de desarrollo web utilizando Djan
 - Arquitectura en capas  
 - Manejo de vistas y templates  
 - Autenticación básica  
-- Persistencia de datos  
+- Persistencia de datos
