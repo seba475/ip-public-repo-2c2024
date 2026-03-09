@@ -70,8 +70,8 @@ Esta separación permite mantener el código organizado y facilitar futuras modi
 
 1. Instalar Python  
 2. Instalar dependencias:
-```pip install -r requirements.txt
-```
+```pip install-r requirements.txt```
+
 3. Ejecutar el servidor
 ```python manage.py runserver 3000```
 4. Abrir en el navegador
