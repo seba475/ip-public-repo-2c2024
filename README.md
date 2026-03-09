@@ -18,11 +18,25 @@ El sistema permite además:
 
 ## 📸 Capturas de la aplicación
 
+### 🖼️ Galería de personajes
 <p align="center">
   <img src="img/galeria.png" width="700">
+</p>
+
+---
+
+### 🔍 Buscador en funcionamiento
+<p align="center">
   <img src="img/buscador.png" width="700">
+</p>
+
+---
+
+### ⭐ Personajes favoritos
+<p align="center">
   <img src="img/favoritos.png" width="700">
 </p>
+
 
 ---
 
