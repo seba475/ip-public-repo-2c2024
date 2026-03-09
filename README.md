@@ -16,11 +16,13 @@ El sistema permite además:
 - 🔐 Iniciar sesión  
 - ⭐ Gestionar una lista de favoritos  
 
-## 📷 Capturas de la aplicación
+## 📸 Capturas de la aplicación
 
-![Galería de personajes](img/galeria.png)
-![Buscador](img/buscador.png)
-![Favoritos](img/favoritos.png)
+<p align="center">
+  <img src="img/galeria.png" width="700">
+  <img src="img/buscador.png" width="700">
+  <img src="img/favoritos.png" width="700">
+</p>
 
 ---
 
